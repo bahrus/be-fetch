@@ -3,18 +3,24 @@
 *be-fetch* turns the tag it adorns into a web component that inherits from [fetch-for](https://github.com/bahrus/fetch-for).
 
 ```html
-<medical-prescriptions
-    enh-be-fetch 
-    onerror
-    href="https://my-website.com/prescriptions/patient/zero">
-<medical-prescriptions>
-
-
-...
-<medical-prescriptions
+<input name=op value=integrate>
+<input name=expr value=x^2>
+<newton-microservice
+    enh-be-fetch
+    for="@op @expr"
+    oninput="event.href=`https://newton.now.sh/api/v2/${event.forData.op.value}/${event.forData.expr.value}`"
+    target=-object
+    onerror=console.error(href)
 >
-</medical-prescriptions>
+</newton-microservice>
+...
+<json-viewer -object></json-viewer>
+
 ```
+
+Because newton-microservice gets turned into a web component, we can reuse the tag elsewhere in the document (no need for the enh-be-fetch attribute once it is registered).
+
+But don't get your hopes up too high -- all the other attributes shown above will also need to be specified (no sharing of default property values is created on the fly, in case you were wondering about that.)
 
 ## Using a custom web component to extend. [Untested]
 
