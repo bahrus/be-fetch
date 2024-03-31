@@ -2,6 +2,8 @@
 
 *be-fetch* turns the tag it adorns into a web component that inherits from [fetch-for](https://github.com/bahrus/fetch-for).
 
+It provides a way to declaratively define custom elements without script, but is strictly limited to non-visual "web components as a service" type custom elements.
+
 ```html
 <input name=op value=integrate>
 <input name=expr value=x^2>
@@ -55,3 +57,5 @@ specify the custom element name to inherit from within the adorned tag itself:
     href="https://my-website.com/prescriptions/patient/zero">
 <medical-prescriptions>
 ```
+
+[TODO] Consider security implications.  Seems like there could be a danger in allowing free form html to "register itself" as a custom element without some buy in that gets weeded out via sanitizers.
