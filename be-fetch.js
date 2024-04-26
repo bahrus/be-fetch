@@ -4,7 +4,6 @@ export class BeFetch extends BE {
     static get beConfig() {
         return {
             parse: true,
-            //parseAndCamelize: true,
             isParsedProp: 'isParsed'
         };
     }
@@ -12,6 +11,9 @@ export class BeFetch extends BE {
         //TODO:  this seems like a nice shareable function that could be used in other scenarios.
         //move to trans-render?
         const { enhancedElement } = self;
+        if (!enhancedElement.onload && !enhancedElement.oninput && !enhancedElement.onerror) {
+            throw 'onload or oninput or onerror must be specified';
+        }
         const { localName } = enhancedElement;
         const inherits = enhancedElement.getAttribute('inherits') || window['be-fetch']?.dataset?.inherits;
         if (inherits) {

@@ -53,9 +53,8 @@ specify the custom element name to inherit from within the adorned tag itself:
 <medical-prescriptions zero=name
     enh-be-fetch 
     inherits=my-custom-base-fetch-element
-    onerror
+    console.error(href)
     href="https://my-website.com/prescriptions/patient/zero">
-<medical-prescriptions>
+</medical-prescriptions>
 ```
 
-[TODO] Consider security implications.  Seems like there could be a danger in allowing free form html to "register itself" as a custom element without some buy in that gets weeded out via sanitizers.

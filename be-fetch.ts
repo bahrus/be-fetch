@@ -7,7 +7,6 @@ export class BeFetch extends BE<AP, Actions> implements Actions{
     static override get beConfig(){
         return {
             parse: true,
-            //parseAndCamelize: true,
             isParsedProp: 'isParsed'
         } as BEConfig;
     }
@@ -16,6 +15,9 @@ export class BeFetch extends BE<AP, Actions> implements Actions{
         //TODO:  this seems like a nice shareable function that could be used in other scenarios.
         //move to trans-render?
         const {enhancedElement} = self;
+        if(!(enhancedElement as HTMLElement).onload && !(enhancedElement as HTMLElement).oninput && !(enhancedElement as HTMLElement).onerror){
+            throw 'onload or oninput or onerror must be specified'
+        }
         const {localName} = enhancedElement;
         const inherits = enhancedElement.getAttribute('inherits') || (<any>window)['be-fetch']?.dataset?.inherits;
         if(inherits){
@@ -36,7 +38,7 @@ export class BeFetch extends BE<AP, Actions> implements Actions{
     }
 }
 
-export interface BeKvetching extends AllProps{}
+export interface BeFetch extends AllProps{}
 
 export const tagName = 'be-fetch';
 
